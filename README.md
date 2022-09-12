@@ -2,7 +2,7 @@
 前端实际开发推荐用法
 
 ## scss
-1. @mixin 封装公共的混入规则，来简化代码
+- @mixin 封装公共的混入规则，来简化代码
 ``` scss
 // 定义
 @mixin flexBox( $directionVlaue: row, $justifyValue: flex-start, $alignValue: baseline ) {
@@ -21,3 +21,26 @@
    @include flexBox( , center, center); // leave first argument empty
 }
 ```
+
+## uni-app 开发
+ - 图片预加载
+ ```js
+ export const preLoadImage = url => {
+  return new Promise((resolve, reject) => {
+    if (/^http/.test(url)) {
+      uni.downloadFile({
+        url,
+        success(res) {
+          resolve(res.tempFilePath);
+        },
+        fail(e) {
+          reject(e);
+        },
+      });
+    } else {
+      // 本地路径
+      resolve(url);
+    }
+  });
+};
+ ```
